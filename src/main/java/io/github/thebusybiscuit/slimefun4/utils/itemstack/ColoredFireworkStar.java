@@ -9,6 +9,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkEffectMeta;
 
@@ -32,6 +33,7 @@ public class ColoredFireworkStar extends CustomItem {
             }
 
             ((FireworkEffectMeta) im).setEffect(FireworkEffect.builder().with(Type.BURST).withColor(color).build());
+            im.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();

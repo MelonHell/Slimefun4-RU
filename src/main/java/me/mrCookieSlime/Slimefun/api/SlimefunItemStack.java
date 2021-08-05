@@ -1,11 +1,7 @@
 package me.mrCookieSlime.Slimefun.api;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
@@ -49,6 +45,23 @@ public class SlimefunItemStack extends CustomItem {
 
     public SlimefunItemStack(@Nonnull String id, @Nonnull Material type, @Nonnull Color color, @Nullable String name, String... lore) {
         super(new ItemStack(type), color, name, lore);
+        // Hide "No effects" text
+        ItemMeta im = getItemMeta();
+        if (im != null) {
+            switch (getType()) {
+                case POTION:
+                    im.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                    setItemMeta(im);
+                    break;
+                case LEATHER_HELMET:
+                case LEATHER_CHESTPLATE:
+                case LEATHER_LEGGINGS:
+                case LEATHER_BOOTS:
+                    im.addItemFlags(ItemFlag.HIDE_DYE);
+                    setItemMeta(im);
+                    break;
+            }
+        }
 
         setItemId(id);
     }
