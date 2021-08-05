@@ -550,26 +550,44 @@ public final class SlimefunItems {
     public static final SlimefunItemStack COMMON_TALISMAN = new SlimefunItemStack("COMMON_TALISMAN", Material.EMERALD, "&6Обычный талисман");
     public static final SlimefunItemStack ENDER_TALISMAN = new SlimefunItemStack("ENDER_TALISMAN", Material.EMERALD, "&5Эндер-талисман");
 
-    public static final SlimefunItemStack TALISMAN_ANVIL = new SlimefunItemStack("ANVIL_TALISMAN", Material.EMERALD, "&aТалисман наковальни", "", "&fКаждый талисман может спасти", "&f1 инструмент от поломки, но тогда", "&fон исчезнет", "", "&4&lВНИМАНИЕ:", "&4Этот талисман не работает с", "&4инструментами, которые слишком", "&4мощные из-за их сложности");
-    public static final SlimefunItemStack TALISMAN_MINER = new SlimefunItemStack("MINER_TALISMAN", Material.EMERALD, "&aТалисман шахтёра", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он даёт", "&f20% шанс на удвоение", "&fлюбой руды, которую ты добываешь");
-    public static final SlimefunItemStack TALISMAN_HUNTER = new SlimefunItemStack("HUNTER_TALISMAN", Material.EMERALD, "&aТалисман охотника", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он даёт", "&f20% шанс на удвоение", "&fвсего лута с убиваемых мобов");
-    public static final SlimefunItemStack TALISMAN_LAVA = new SlimefunItemStack("LAVA_TALISMAN", Material.EMERALD, "&aТалисман лавы", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&fдавать тебе огнеупорность", "&fпри касании лавы,", "&fно при этом он исчезнет");
-    public static final SlimefunItemStack TALISMAN_WATER = new SlimefunItemStack("WATER_TALISMAN", Material.EMERALD, "&aТалисман воды", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&fдавать тебе возможность", "&fдышать под водой как только", "&fты начнёшь тонуть, но при", "&fэтом он исчезнет");
-    public static final SlimefunItemStack TALISMAN_ANGEL = new SlimefunItemStack("ANGEL_TALISMAN", Material.EMERALD, "&aТалисман ангела", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он даёт 75%", "&fшанс на поглощение урона от падения");
-    public static final SlimefunItemStack TALISMAN_FIRE = new SlimefunItemStack("FIRE_TALISMAN", Material.EMERALD, "&aТалисман огня", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&fдавать тебе Огнеупорность", "&fпри контакте с огнём,", "&fно при этом он исчезнет");
-    public static final SlimefunItemStack TALISMAN_MAGICIAN = new SlimefunItemStack("MAGICIAN_TALISMAN", Material.EMERALD, "&aТалисман мага", "");
-    public static final SlimefunItemStack TALISMAN_TRAVELLER = new SlimefunItemStack("TRAVELLER_TALISMAN", Material.EMERALD, "&aТалисман путешественника", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&fдобавлять 60% шанс на значительное", "&fувеличение скорости при беге");
-    public static final SlimefunItemStack TALISMAN_WARRIOR = new SlimefunItemStack("WARRIOR_TALISMAN", Material.EMERALD, "&aТалисман воина", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&fдавать тебе Силу III при получении", "&fурона, но при этом он исчезнет");
-    public static final SlimefunItemStack TALISMAN_KNIGHT = new SlimefunItemStack("KNIGHT_TALISMAN", Material.EMERALD, "&aТалисман рыцаря", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&fдобавлять 30% шанс на 5 секунд", "&fРегенерации при получении", "&fурона, но при этом он исчезнет");
-    public static final SlimefunItemStack TALISMAN_WHIRLWIND = new SlimefunItemStack("WHIRLWIND_TALISMAN", Material.EMERALD, "&aТалисман вихря", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он будет", "&f отражать 60% всех снарядов.", "&e&oТолько Трезубец может", "&e&oпробить этот слой защиты.");
-    public static final SlimefunItemStack TALISMAN_WIZARD = new SlimefunItemStack("WIZARD_TALISMAN", Material.EMERALD, "&aТалисман чародея", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он даёт", "&fвозможность получить зачарование Удача IV/Удача V,", "&fно при этом уменьшает уровень", "&fдругих зачарований");
-    public static final SlimefunItemStack TALISMAN_CAVEMAN = new SlimefunItemStack("CAVEMAN_TALISMAN", Material.EMERALD, "&aТалисман пещерного человека", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он даёт", "&f50% шанс на приличное", "&fускорение, при добыче любой руды");
-    public static final SlimefunItemStack TALISMAN_WISE = new SlimefunItemStack("WISE_TALISMAN", Material.EMERALD, "&aТалисман мудрости", "", "&fКогда у тебя есть этот талисман", "&fв ячейке инвентаря, он даёт", "&f20% шанс на удвоение", "&fвсего полученого опыта");
+    public static final SlimefunItemStack TALISMAN_ANVIL = new SlimefunItemStack("ANVIL_TALISMAN", Material.EMERALD, "&aТалисман наковальни", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре предотвращает поломку одного инструмента, после чего исчезает.", "", "&4&lВНИМАНИЕ:", "&4Талисман не работает со слишком мощными инструментами из-за их сложности."));
+    public static final SlimefunItemStack TALISMAN_MINER = new SlimefunItemStack("MINER_TALISMAN", Material.EMERALD, "&aТалисман шахтёра", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 20% шанс удвоить любые добытые руды."));
+    public static final SlimefunItemStack TALISMAN_HUNTER = new SlimefunItemStack("HUNTER_TALISMAN", Material.EMERALD, "&aТалисман охотника", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 20% шанс удвоить полученный дроп с мобов."));
+    public static final SlimefunItemStack TALISMAN_LAVA = new SlimefunItemStack("LAVA_TALISMAN", Material.EMERALD, "&aТалисман лавы", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт Огнеупорность при соприкосновении с лавой, после чего талисман исчезает."));
+    public static final SlimefunItemStack TALISMAN_WATER = new SlimefunItemStack("WATER_TALISMAN", Material.EMERALD, "&aТалисман воды", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даст возможность дышать под водой когда закончится воздух, после чего талисман исчезает."));
+    public static final SlimefunItemStack TALISMAN_ANGEL = new SlimefunItemStack("ANGEL_TALISMAN", Material.EMERALD, "&aТалисман ангела", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 75% шанс поглотить урон от падения."));
+    public static final SlimefunItemStack TALISMAN_FIRE = new SlimefunItemStack("FIRE_TALISMAN", Material.EMERALD, "&aТалисман огня", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт огнеупорность при контакте с огнём, после чего талисман исчезает."));
+    public static final SlimefunItemStack TALISMAN_MAGICIAN = new SlimefunItemStack("MAGICIAN_TALISMAN", Material.EMERALD, "&aТалисман мага", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 80% к удаче при зачаровании.", "Иногда будут появляться дополнительные зачарования."));
+    public static final SlimefunItemStack TALISMAN_TRAVELLER = new SlimefunItemStack("TRAVELLER_TALISMAN", Material.EMERALD, "&aТалисман путешественника", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 60% шанс на значительное увеличение скорости при беге."));
+    public static final SlimefunItemStack TALISMAN_WARRIOR = new SlimefunItemStack("WARRIOR_TALISMAN", Material.EMERALD, "&aТалисман воина", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт Силу III при получении урона, после чего талисман исчезает."));
+    public static final SlimefunItemStack TALISMAN_KNIGHT = new SlimefunItemStack("KNIGHT_TALISMAN", Material.EMERALD, "&aТалисман рыцаря", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 30% шанс на Регенерацию в течение 5 секунд при получении урона, после чего талисман исчезает."));
+    public static final SlimefunItemStack TALISMAN_WHIRLWIND = new SlimefunItemStack("WHIRLWIND_TALISMAN", Material.EMERALD, "&aТалисман вихря", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт возможность отразить 60% всех снарядов.", "&e&oТрезубец может пробить эту защиту."));
+    public static final SlimefunItemStack TALISMAN_WIZARD = new SlimefunItemStack("WIZARD_TALISMAN", Material.EMERALD, "&aТалисман чародея", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт возможность получить зачарования Удача IV или Удача V, уменьшая при этом уровень других зачарований."));
+    public static final SlimefunItemStack TALISMAN_CAVEMAN = new SlimefunItemStack("CAVEMAN_TALISMAN", Material.EMERALD, "&aТалисман пещерного человека", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 50% шанс на Спешку III при добывании любой руды."));
+    public static final SlimefunItemStack TALISMAN_WISE = new SlimefunItemStack("WISE_TALISMAN", Material.EMERALD, "&aТалисман мудрости", Huita.generateLore("", "&fНаличие этого талисмана в инвентаре даёт 20% шанс удвоить полученный опыт"));
 
-    static {
-        Huita.addLore(TALISMAN_MAGICIAN, "Когда у тебя есть этот талисман в ячейке инвентаря, он будет добавлять 80% бонус удачи при зачаровании", "&f");
-        Huita.addLore(TALISMAN_MAGICIAN, "Ты переодически будешь получать дополнительные зачаровывания", "&f");
-    }
+//    static {
+//        Huita.addLore(TALISMAN_ANVIL, "Наличие этого талисмана в инвентаре предотвращает поломку одного инструмента, после чего исчезает.", "&f");
+//        Huita.addLore(TALISMAN_ANVIL, "", "");
+//        Huita.addLore(TALISMAN_ANVIL, "ВНИМАНИЕ:", "&4&l");
+//        Huita.addLore(TALISMAN_ANVIL, "Талисман не работает со слишком мощными инструментами из-за их сложности.", "&4");
+//        Huita.addLore(TALISMAN_MINER, "Наличие этого талисмана в инвентаре даёт 20% шанс удвоить любые добытые руды.", "&f");
+//        Huita.addLore(TALISMAN_HUNTER, "Наличие этого талисмана в инвентаре даёт 20% шанс удвоить полученный дроп с мобов.", "&f");
+//        Huita.addLore(TALISMAN_LAVA, "Наличие этого талисмана в инвентаре даёт Огнеупорность при соприкосновении с лавой, после чего талисман исчезает.", "&f");
+//        Huita.addLore(TALISMAN_WATER, "Наличие этого талисмана в инвентаре даст возможность дышать под водой когда закончится воздух, после чего талисман исчезает.", "&f");
+//        Huita.addLore(TALISMAN_ANGEL, "Наличие этого талисмана в инвентаре даёт 75% шанс поглотить урон от падения.", "&f");
+//        Huita.addLore(TALISMAN_FIRE, "Наличие этого талисмана в инвентаре даёт огнеупорность при контакте с огнём, после чего талисман исчезает.", "&f");
+//        Huita.addLore(TALISMAN_MAGICIAN, "Наличие этого талисмана в инвентаре даёт 80% к удаче при зачаровании.", "&f");
+//        Huita.addLore(TALISMAN_MAGICIAN, "Иногда будут появляться дополнительные зачарования.", "&f");
+//        Huita.addLore(TALISMAN_TRAVELLER, "Наличие этого талисмана в инвентаре даёт 60% шанс на значительное увеличение скорости при беге.", "&f");
+//        Huita.addLore(TALISMAN_WARRIOR, "Наличие этого талисмана в инвентаре даёт Силу III при получении урона, после чего талисман исчезает.", "&f");
+//        Huita.addLore(TALISMAN_KNIGHT, "Наличие этого талисмана в инвентаре даёт 30% шанс на Регенерацию в течение 5 секунд при получении урона, после чего талисман исчезает.", "&f");
+//        Huita.addLore(TALISMAN_WHIRLWIND, "Наличие этого талисмана в инвентаре даёт возможность отразить 60% всех снарядов.", "&f");
+//        Huita.addLore(TALISMAN_WHIRLWIND, "Трезубец может пробить эту защиту.", "&e&o");
+//        Huita.addLore(TALISMAN_WIZARD, "Наличие этого талисмана в инвентаре даёт возможность получить зачарования Удача IV или Удача V, уменьшая при этом уровень других зачарований.", "&f");
+//        Huita.addLore(TALISMAN_CAVEMAN, "Наличие этого талисмана в инвентаре даёт 50% шанс на Спешку III при добывании любой руды.", "&f");
+//        Huita.addLore(TALISMAN_WISE, "Наличие этого талисмана в инвентаре даёт 20% шанс удвоить полученный опыт", "&f");
+//    }
 
     /* Staves */
     public static final SlimefunItemStack STAFF_ELEMENTAL = new SlimefunItemStack("STAFF_ELEMENTAL", Material.STICK, "&6Посох элементаля");
@@ -583,6 +601,11 @@ public final class SlimefunItems {
         STAFF_FIRE.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 5);
         STAFF_WATER.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
         STAFF_STORM.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+        for (SlimefunItemStack item : new SlimefunItemStack[]{STAFF_WIND, STAFF_FIRE, STAFF_WATER, STAFF_STORM}) {
+            ItemMeta im = item.getItemMeta();
+            im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            item.setItemMeta(im);
+        }
     }
 
     /* Multiblocks */

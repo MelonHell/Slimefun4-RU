@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.rus_shit;
 
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -7,15 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Huita {
-
-    public static void main(String[] args) {
-        System.out.println(getSize("pipi&4daster"));
-//        String[] split = huita("Когда у тебя есть этот талисман в ячейке инвентаря, он будет добавлять 80% бонус удачи при зачаровании Ты переодически будешь получать дополнительные зачаровывания", "", 192);
-//        for (int i = 0; i < split.length; i++) {
-//            System.out.println(split[i]);
-//        }
-    }
-
      private static final String[] table = {
             "'!,.:;|i",
             "`l",
@@ -28,13 +20,13 @@ public class Huita {
             "№"
     };
 
-    public static void addLore(ItemStack itemStack, String string, String color) {
-        ItemMeta meta = itemStack.getItemMeta();
-        List<String> lore = meta.getLore();
-        lore.addAll(Huita.huita(string, color));
-        meta.setLore(lore);
-        itemStack.setItemMeta(meta);
-    }
+//    public static void addLore(ItemStack itemStack, String... strings) {
+//        ItemMeta meta = itemStack.getItemMeta();
+//        List<String> lore = meta.getLore();
+//        lore.addAll(Huita.generateLore(strings));
+//        meta.setLore(lore);
+//        itemStack.setItemMeta(meta);
+//    }
 
     public static int getSize(String string) {
         int size = 0;
@@ -56,8 +48,17 @@ public class Huita {
         return size;
     }
 
-    public static List<String> huita(String string, String color) {
-        return huita(string, color, 192);
+    public static String[] generateLore(String... strings) {
+        List<String> lore = new ArrayList<>();
+        for (String string : strings) {
+            String color = "";
+            while (string.startsWith("&")) {
+                color += "&" + string.charAt(1);
+                string = string.replaceFirst("&" + string.charAt(1), "");
+            }
+            lore.addAll(huita(string, color, 192));
+        }
+        return lore.toArray(new String[0]);
     }
 
     public static List<String> huita(String string, String color, int maxLineSize) {
@@ -68,13 +69,8 @@ public class Huita {
             if (buf == null) buf = split[i];
             else buf += " " + split[i];
 
-            if (i != split.length - 1) {
-                if (getSize(buf + " " + split[i + 1]) >= maxLineSize) {
-                    result.add(color + buf);
-                    buf = null;
-                }
-            } else {
-                result.add(color + buf);
+            if (i == split.length - 1 || getSize(buf + " " + split[i + 1]) >= maxLineSize) {
+                result.add(ChatColor.translateAlternateColorCodes('&', color + buf));
                 buf = null;
             }
         }
