@@ -23,11 +23,11 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
  */
 public final class LoreBuilder {
 
-    public static final String HAZMAT_SUIT_REQUIRED = "&8\u21E8 &4Hazmat Suit required!";
+    public static final String HAZMAT_SUIT_REQUIRED = "&8\u21E8 &4Требуется защитный костюм!";
 
-    public static final String RIGHT_CLICK_TO_USE = "&eRight Click&7 to use";
-    public static final String RIGHT_CLICK_TO_OPEN = "&eRight Click&7 to open";
-    public static final String CROUCH_TO_USE = "&eCrouch&7 to use";
+    public static final String RIGHT_CLICK_TO_USE = "&eПКМ&7 - использовать";
+    public static final String RIGHT_CLICK_TO_OPEN = "&eПКМ&7 - открыть";
+    public static final String CROUCH_TO_USE = "&eShift&7 - использовать";
 
     private static final DecimalFormat hungerFormat = new DecimalFormat("#.0", DecimalFormatSymbols.getInstance(Locale.ROOT));
 
@@ -42,11 +42,11 @@ public final class LoreBuilder {
     }
 
     public static @Nonnull String speed(float speed) {
-        return "&8\u21E8 &b\u26A1 &7Speed: &b" + speed + 'x';
+        return "&8\u21E8 &b\u26A1 &7Скорость: &b" + speed + 'x';
     }
 
     public static @Nonnull String powerBuffer(int power) {
-        return power(power, " Buffer");
+        return power(power, " Буфер");
     }
 
     public static @Nonnull String powerPerSecond(int power) {
@@ -62,19 +62,33 @@ public final class LoreBuilder {
     }
 
     public static @Nonnull String material(@Nonnull String material) {
-        return "&8\u21E8 &7Material: &b" + material;
+        return "&8\u21E8 &7Материал: &b" + material;
     }
 
     public static @Nonnull String hunger(double value) {
-        return "&7&oRestores &b&o" + hungerFormat.format(value) + " &7&oHunger";
+        return "&7&oВосстанавливает &b&o" + hungerFormat.format(value) + "&7&o сытости";
     }
 
     public static @Nonnull String range(int blocks) {
-        return "&7Range: &c" + blocks + " blocks";
+        return "&7Радиус действия: &c" + blocks + " " + russianHuita(blocks, "блок", "блока", "блоков");
     }
 
     public static @Nonnull String usesLeft(int usesLeft) {
-        return "&e" + usesLeft + ' ' + (usesLeft > 1 ? "Uses" : "Use") + " &7left";
+        return "&7Осталось &e" + usesLeft + " &7" + russianHuita(usesLeft, "использование", "использования", "использований");
     }
 
+    public static @Nonnull String russianHuita(int num, String a, String b, String c) {
+        int preLastDigit = num % 100 / 10;
+        if (preLastDigit == 1) return c;
+        switch (num % 10) {
+            case 1:
+                return a;
+            case 2:
+            case 3:
+            case 4:
+                return b;
+            default:
+                return c;
+        }
+    }
 }
