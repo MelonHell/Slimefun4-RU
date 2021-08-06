@@ -85,7 +85,7 @@ public class StrangeNetherGoo extends SimpleSlimefunItem<ItemUseHandler> impleme
                 // Give Sheep color, name and effect
                 s.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 60, 2));
                 s.setColor(DyeColor.PURPLE);
-                s.setCustomName(ChatColor.DARK_PURPLE + "Tainted Sheep");
+                s.setCustomName(ChatColor.DARK_PURPLE + "Испорченная овца");
                 e.setCancelled(true);
 
             }

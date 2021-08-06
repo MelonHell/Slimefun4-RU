@@ -35,9 +35,9 @@ public class SlimefunGuideItem extends ItemStack {
 
         List<String> lore = new ArrayList<>();
         SlimefunGuideMode type = implementation.getMode();
-        lore.add(type == SlimefunGuideMode.CHEAT_MODE ? ChatColors.color("&4&lOnly openable by Admins") : "");
-        lore.add(ChatColors.color("&eRight Click &8\u21E8 &7Browse Items"));
-        lore.add(ChatColors.color("&eShift + Right Click &8\u21E8 &7Open Settings / Credits"));
+        lore.add(type == SlimefunGuideMode.CHEAT_MODE ? ChatColors.color("&4&lДоступно только администраторам") : "");
+        lore.add(ChatColors.color("&eПКМ &8\u21E8 &7Смотреть предметы"));
+        lore.add(ChatColors.color("&eShift + ПКМ &8\u21E8 &7Открыть настройки"));
 
         meta.setLore(lore);
 

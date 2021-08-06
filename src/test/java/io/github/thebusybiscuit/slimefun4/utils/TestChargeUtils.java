@@ -43,7 +43,7 @@ class TestChargeUtils {
 
         // Make sure the lore is correct
         ChargeUtils.setCharge(meta, 10.1f, 100.5f);
-        Assertions.assertEquals("&8\u21E8 &e\u26A1 &710.1 / 100.5 J".replace('&', ChatColor.COLOR_CHAR), meta.getLore().get(0));
+        Assertions.assertEquals("&8\u21E8 &e\u26A1 &710.1 / 100.5 Дж".replace('&', ChatColor.COLOR_CHAR), meta.getLore().get(0));
 
         // Make sure the persistent data was set
         Assertions.assertEquals(10.1, PersistentDataAPI.getFloat(meta, SlimefunPlugin.getRegistry().getItemChargeDataKey()), 0.001);
@@ -68,7 +68,7 @@ class TestChargeUtils {
         // Test with lore
         ItemStack itemWithLore = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta metaWithLore = itemWithLore.getItemMeta();
-        metaWithLore.setLore(Collections.singletonList("&8\u21E8 &e\u26A1 &710.5 / 100.5 J".replace('&', ChatColor.COLOR_CHAR)));
+        metaWithLore.setLore(Collections.singletonList("&8\u21E8 &e\u26A1 &710.5 / 100.5 Дж".replace('&', ChatColor.COLOR_CHAR)));
 
         Assertions.assertEquals(10.5, ChargeUtils.getCharge(metaWithLore), 0.001);
         Assertions.assertTrue(PersistentDataAPI.hasFloat(metaWithLore, SlimefunPlugin.getRegistry().getItemChargeDataKey()));

@@ -98,8 +98,8 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
         List<String> lore = meta.getLore();
 
         for (int i = 0; i < lore.size(); i++) {
-            if (lore.get(i).contains("<Type>")) {
-                lore.set(i, lore.get(i).replace("<Type>", ChatUtils.humanize(type.name())));
+            if (lore.get(i).contains("<Тип>")) {
+                lore.set(i, lore.get(i).replace("<Тип>", ChatUtils.humanize(type.name())));
                 break;
             }
         }

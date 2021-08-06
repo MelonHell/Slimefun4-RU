@@ -50,8 +50,8 @@ public class Multimeter extends SimpleSlimefunItem<ItemUseHandler> {
                         e.cancel();
 
                         Location l = e.getClickedBlock().get().getLocation();
-                        String stored = NumberUtils.getCompactDouble(component.getCharge(l)) + " J";
-                        String capacity = NumberUtils.getCompactDouble(component.getCapacity()) + " J";
+                        String stored = NumberUtils.getCompactDouble(component.getCharge(l)) + " Дж";
+                        String capacity = NumberUtils.getCompactDouble(component.getCapacity()) + " Дж";
 
                         Player p = e.getPlayer();
                         p.sendMessage("");

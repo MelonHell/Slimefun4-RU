@@ -62,7 +62,7 @@ public class TestRechargeableItems {
         rechargeable.setItemCharge(item, 10);
         Assertions.assertEquals(10, rechargeable.getItemCharge(item));
 
-        String lore = ChatColors.color("&8\u21E8 &e\u26A1 &7") + "10.0 / 10.0 J";
+        String lore = ChatColors.color("&8\u21E8 &e\u26A1 &7") + "10.0 / 10.0 Дж";
         Assertions.assertEquals(lore, item.getItemMeta().getLore().get(1));
     }
 
@@ -101,7 +101,7 @@ public class TestRechargeableItems {
         Assertions.assertTrue(rechargeable.addItemCharge(item, 10));
         Assertions.assertEquals(10, rechargeable.getItemCharge(item));
 
-        String lore = ChatColors.color("&8\u21E8 &e\u26A1 &7") + "10.0 / 10.0 J";
+        String lore = ChatColors.color("&8\u21E8 &e\u26A1 &7") + "10.0 / 10.0 Дж";
         Assertions.assertEquals(lore, item.getItemMeta().getLore().get(0));
     }
 

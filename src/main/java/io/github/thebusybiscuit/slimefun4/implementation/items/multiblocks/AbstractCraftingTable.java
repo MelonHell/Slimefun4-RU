@@ -48,7 +48,7 @@ abstract class AbstractCraftingTable extends MultiBlockMachine {
     }
 
     protected @Nonnull Inventory createVirtualInventory(@Nonnull Inventory inv) {
-        Inventory fakeInv = Bukkit.createInventory(null, 9, "Fake Inventory");
+        Inventory fakeInv = Bukkit.createInventory(null, 9, "Поддельный инвентарь");
 
         for (int j = 0; j < inv.getContents().length; j++) {
             ItemStack stack = inv.getContents()[j];

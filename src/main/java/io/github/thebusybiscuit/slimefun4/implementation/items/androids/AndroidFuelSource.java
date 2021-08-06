@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.slimefun4.melonhell.MelonUtils;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.cscorelib2.item.CustomItem;
@@ -18,17 +19,17 @@ public enum AndroidFuelSource {
     /**
      * This {@link ProgrammableAndroid} runs on solid fuel, e.g. Wood or coal
      */
-    SOLID("", "&fThis Android runs on solid Fuel", "&fe.g. Coal, Wood, etc..."),
+    SOLID(MelonUtils.splitLore("", "&fЭтот робот работает на сухом топливе, таком как уголь, дерево и прочее...")),
 
     /**
      * This {@link ProgrammableAndroid} runs on liquid fuel, e.g. Fuel, Oil or Lava
      */
-    LIQUID("", "&fThis Android runs on liquid Fuel", "&fe.g. Lava, Oil, Fuel, etc..."),
+    LIQUID(MelonUtils.splitLore("", "&fЭтот робот работает на жидком топливе, таком как лава, нефть, бензин и прочее...")),
 
     /**
      * This {@link ProgrammableAndroid} runs on nuclear fuel, e.g. Uranium
      */
-    NUCLEAR("", "&fThis Android runs on radioactive Fuel", "&fe.g. Uranium, Neptunium or Boosted Uranium");
+    NUCLEAR(MelonUtils.splitLore("", "&fЭтот робот работает на радиоактивном топливе, таком как уран, нептуний, обогащенный уран"));
 
     private final String[] lore;
 
@@ -43,7 +44,7 @@ public enum AndroidFuelSource {
      */
     @Nonnull
     public ItemStack getItem() {
-        return new CustomItem(HeadTexture.GENERATOR.getAsItemStack(), "&8\u21E9 &cFuel Input &8\u21E9", lore);
+        return new CustomItem(HeadTexture.GENERATOR.getAsItemStack(), "&8\u21E9 &cВвод топлива &8\u21E9", lore);
     }
 
 }

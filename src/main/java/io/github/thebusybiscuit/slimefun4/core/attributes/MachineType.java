@@ -4,9 +4,9 @@ import javax.annotation.Nonnull;
 
 public enum MachineType {
 
-    CAPACITOR("Capacitor"),
-    GENERATOR("Generator"),
-    MACHINE("Machine");
+    CAPACITOR("Конденсатор"),
+    GENERATOR("Генератор"),
+    MACHINE("Машина");
 
     private final String suffix;
 

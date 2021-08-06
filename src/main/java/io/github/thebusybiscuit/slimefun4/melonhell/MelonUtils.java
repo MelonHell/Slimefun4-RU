@@ -1,13 +1,12 @@
-package io.github.thebusybiscuit.slimefun4.rus_shit;
+package io.github.thebusybiscuit.slimefun4.melonhell;
 
 import org.bukkit.ChatColor;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Huita {
+public class MelonUtils {
      private static final String[] table = {
             "'!,.:;|i",
             "`l",
@@ -20,15 +19,7 @@ public class Huita {
             "№"
     };
 
-//    public static void addLore(ItemStack itemStack, String... strings) {
-//        ItemMeta meta = itemStack.getItemMeta();
-//        List<String> lore = meta.getLore();
-//        lore.addAll(Huita.generateLore(strings));
-//        meta.setLore(lore);
-//        itemStack.setItemMeta(meta);
-//    }
-
-    public static int getSize(String string) {
+    private static int getSize(String string) {
         int size = 0;
         for (int i = 0; i < string.length(); i++) {
             char charAt = string.charAt(i);
@@ -48,7 +39,7 @@ public class Huita {
         return size;
     }
 
-    public static String[] generateLore(String... strings) {
+    public static String[] splitLore(String... strings) {
         List<String> lore = new ArrayList<>();
         for (String string : strings) {
             String color = "";
@@ -56,12 +47,12 @@ public class Huita {
                 color += "&" + string.charAt(1);
                 string = string.replaceFirst("&" + string.charAt(1), "");
             }
-            lore.addAll(huita(string, color, 192));
+            lore.addAll(split(string, color, 192));
         }
         return lore.toArray(new String[0]);
     }
 
-    public static List<String> huita(String string, String color, int maxLineSize) {
+    private static List<String> split(String string, String color, int maxLineSize) {
         String[] split = string.split(" ");
         List<String> result = new ArrayList<>();
         String buf = null;
@@ -75,5 +66,21 @@ public class Huita {
             }
         }
         return result;
+    }
+
+    public static @Nonnull
+    String russianHuita(int num, String a, String b, String c) {
+        int preLastDigit = num % 100 / 10;
+        if (preLastDigit == 1) return c;
+        switch (num % 10) {
+            case 1:
+                return a;
+            case 2:
+            case 3:
+            case 4:
+                return b;
+            default:
+                return c;
+        }
     }
 }

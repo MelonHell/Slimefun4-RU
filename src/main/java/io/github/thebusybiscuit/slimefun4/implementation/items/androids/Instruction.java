@@ -281,7 +281,7 @@ public enum Instruction {
 
     @ParametersAreNonnullByDefault
     public void execute(ProgrammableAndroid android, Block b, BlockMenu inventory, BlockFace face) {
-        Validate.notNull(method, "Instruction '" + name() + "' must be executed manually!");
+        Validate.notNull(method, "Инструкцию '" + name() + "' необходимо выполнять вручную!");
         method.perform(android, b, inventory, face);
     }
 
@@ -298,7 +298,7 @@ public enum Instruction {
      */
     @Nullable
     public static Instruction getInstruction(@Nonnull String value) {
-        Validate.notNull(value, "An Instruction cannot be null!");
+        Validate.notNull(value, "Инструкция не может быть пустой!");
         return nameLookup.get(value);
     }
 }
