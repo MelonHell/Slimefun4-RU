@@ -16,7 +16,7 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 
 class TestLoreComparison {
 
-    private static final String IGNORED_LINE = ChatColor.GRAY + "Soulbound";
+    private static final String IGNORED_LINE = ChatColor.GRAY + "Безутратный";
 
     @BeforeAll
     public static void load() {
