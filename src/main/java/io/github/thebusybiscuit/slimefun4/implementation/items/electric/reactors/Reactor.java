@@ -19,15 +19,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.thebusybiscuit.cscorelib2.item.CustomItem;
-import io.github.thebusybiscuit.cscorelib2.protection.ProtectableAction;
+import io.github.bakedlibs.dough.items.CustomItemStack;
+import io.github.bakedlibs.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.ReactorExplodeEvent;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.cargo.ReactorAccessPort;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.AbstractEnergyProvider;
@@ -35,13 +38,11 @@ import io.github.thebusybiscuit.slimefun4.implementation.operations.FuelOperatio
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
@@ -78,8 +79,8 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
     private final MachineProcessor<FuelOperation> processor = new MachineProcessor<>(this);
 
     @ParametersAreNonnullByDefault
-    protected Reactor(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    protected Reactor(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
 
         processor.setProgressBar(getProgressBar());
 
@@ -101,7 +102,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
 
             @Override
             public boolean canOpen(Block b, Player p) {
-                return p.hasPermission("slimefun.inventory.bypass") || SlimefunPlugin.getProtectionManager().hasPermission(p, b.getLocation(), ProtectableAction.INTERACT_BLOCK);
+                return p.hasPermission("slimefun.inventory.bypass") || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
             }
 
             @Override
@@ -144,7 +145,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
 
         switch (mode) {
             case GENERATOR:
-                menu.replaceExistingItem(4, new CustomItem(SlimefunItems.NUCLEAR_REACTOR, "&7Цель: &eЭлектричество", "", "&6Твой реактор будет направлен на производство энергии,", "&6если твоей электрической сети не нужна будет энергия,", "&6то он не будет ничего производить", "", "&7\u21e8 Нажми, чтобы изменить цель на &eПроизводство"));
+                menu.replaceExistingItem(4, new CustomItemStack(SlimefunItems.NUCLEAR_REACTOR, "&7Цель: &eЭлектричество", "", "&6Твой реактор будет направлен на производство энергии,", "&6если твоей электрической сети не нужна будет энергия,", "&6то он не будет ничего производить", "", "&7\u21e8 Нажми, чтобы изменить цель на &eПроизводство"));
                 menu.addMenuClickHandler(4, (p, slot, item, action) -> {
                     BlockStorage.addBlockInfo(b, MODE, ReactorMode.PRODUCTION.toString());
                     updateInventory(menu, b);
@@ -152,7 +153,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
                 });
                 break;
             case PRODUCTION:
-                menu.replaceExistingItem(4, new CustomItem(SlimefunItems.PLUTONIUM, "&7Цель: &eПроизводство", "", "&6Твой реактор будет сфокусирован на производстве,", "&6если твоей элеткрической сети не нужна энергия,", "&6то он продолжит свою работу, а также", "&6не будет производить электричество в это время", "", "&7\u21e8 Нажми, чтобы изменить цель на &eЭлектричество"));
+                menu.replaceExistingItem(4, new CustomItemStack(SlimefunItems.PLUTONIUM, "&7Цель: &eПроизводство", "", "&6Твой реактор будет сфокусирован на производстве,", "&6если твоей элеткрической сети не нужна энергия,", "&6то он продолжит свою работу, а также", "&6не будет производить электричество в это время", "", "&7\u21e8 Нажми, чтобы изменить цель на &eЭлектричество"));
                 menu.addMenuClickHandler(4, (p, slot, item, action) -> {
                     BlockStorage.addBlockInfo(b, MODE, ReactorMode.GENERATOR.toString());
                     updateInventory(menu, b);
@@ -166,7 +167,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
         BlockMenu port = getAccessPort(b.getLocation());
 
         if (port != null) {
-            menu.replaceExistingItem(INFO_SLOT, new CustomItem(Material.GREEN_WOOL, "&7Порт Доступа", "", "&6Обнаружено", "", "&7> Нажми, чтобы просмотреть порт доступа"));
+            menu.replaceExistingItem(INFO_SLOT, new CustomItemStack(Material.GREEN_WOOL, "&7Порт Доступа", "", "&6Обнаружено", "", "&7> Нажми, чтобы просмотреть порт доступа"));
             menu.addMenuClickHandler(INFO_SLOT, (p, slot, item, action) -> {
                 port.open(p);
                 updateInventory(menu, b);
@@ -174,7 +175,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
                 return false;
             });
         } else {
-            menu.replaceExistingItem(INFO_SLOT, new CustomItem(Material.RED_WOOL, "&7Порт Доступа", "", "&cНе обнаружено", "", "&7Порт доступа должен быть", "&7расположен на 3 блока выше", "&7ядерного реактора"));
+            menu.replaceExistingItem(INFO_SLOT, new CustomItemStack(Material.RED_WOOL, "&7Порт Доступа", "", "&cНе обнаружено", "", "&7Порт доступа должен быть", "&7расположен на 3 блока выше", "&7ядерного реактора"));
             menu.addMenuClickHandler(INFO_SLOT, (p, slot, item, action) -> {
                 updateInventory(menu, b);
                 menu.open(p);
@@ -185,32 +186,32 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
 
     private void constructMenu(@Nonnull BlockMenuPreset preset) {
         for (int i : border) {
-            preset.addItem(i, new CustomItem(Material.GRAY_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
 
         for (int i : border_1) {
-            preset.addItem(i, new CustomItem(Material.LIME_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
         }
 
         for (int i : border_3) {
-            preset.addItem(i, new CustomItem(Material.GREEN_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new CustomItemStack(Material.GREEN_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
         }
 
-        preset.addItem(22, new CustomItem(Material.BLACK_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
 
-        preset.addItem(1, new CustomItem(getFuelIcon(), "&7Слот топлива",  "", "&fЭтот слот принимает радиоактивное топливо:", "&2уран &fили &aнептуний"), ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(1, new CustomItemStack(getFuelIcon(), "&7Слот топлива",  "", "&fЭтот слот принимает радиоактивное топливо:", "&2уран &fили &aнептуний"), ChestMenuUtils.getEmptyClickHandler());
 
         for (int i : border_2) {
-            preset.addItem(i, new CustomItem(Material.CYAN_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new CustomItemStack(Material.CYAN_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
         }
 
         if (needsCooling()) {
-            preset.addItem(7, new CustomItem(getCoolant(), "&bСлот охлаждения", "", "&fЭтот слот принимает элементы охлаждения", "&4Без наличия этих элементов", "&4твой реактор - взорвется"));
+            preset.addItem(7, new CustomItemStack(getCoolant(), "&bСлот охлаждения", "", "&fЭтот слот принимает элементы охлаждения", "&4Без наличия этих элементов", "&4твой реактор - взорвется"));
         } else {
-            preset.addItem(7, new CustomItem(Material.BARRIER, "&bСлот охлаждения", "", "&fЭтот слот принимает элементы охлаждения"));
+            preset.addItem(7, new CustomItemStack(Material.BARRIER, "&bСлот охлаждения", "", "&fЭтот слот принимает элементы охлаждения"));
 
             for (int i : border_4) {
-                preset.addItem(i, new CustomItem(Material.BARRIER, "&cНе нуждается в охлаждении"), ChestMenuUtils.getEmptyClickHandler());
+                preset.addItem(i, new CustomItemStack(Material.BARRIER, "&cНе нуждается в охлаждении"), ChestMenuUtils.getEmptyClickHandler());
             }
         }
     }
@@ -332,7 +333,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
         boolean explosion = explosionsQueue.contains(l);
 
         if (explosion) {
-            SlimefunPlugin.runSync(() -> {
+            Slimefun.runSync(() -> {
                 ReactorExplodeEvent event = new ReactorExplodeEvent(l, Reactor.this);
                 Bukkit.getPluginManager().callEvent(event);
 
@@ -348,7 +349,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
     }
 
     private void checkForWaterBlocks(Location l) {
-        SlimefunPlugin.runSync(() -> {
+        Slimefun.runSync(() -> {
             /*
              * We will pick a surrounding block at random and see if this is water.
              * If it isn't, then we will make it explode.
@@ -363,7 +364,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
     }
 
     private void createByproduct(@Nonnull Location l, @Nonnull BlockMenu inv, @Nullable BlockMenu accessPort, @Nonnull FuelOperation operation) {
-        inv.replaceExistingItem(22, new CustomItem(Material.BLACK_STAINED_GLASS_PANE, " "));
+        inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
         ItemStack result = operation.getResult();
 
         if (result != null) {
@@ -407,8 +408,8 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
      *            The {@link Inventory} of this {@link Reactor}
      * @param accessPort
      *            The {@link ReactorAccessPort}, if available
-     * @param timeleft
-     *            The time left
+     * @param operation
+     *            The {@link FuelOperation} of this {@link Reactor}
      * 
      * @return Whether the {@link Reactor} was successfully cooled, if not it should explode
      */
@@ -452,7 +453,7 @@ public abstract class Reactor extends AbstractEnergyProvider implements Hologram
     private void restockFuel(BlockMenu menu, BlockMenu port) {
         for (int slot : getFuelSlots()) {
             for (MachineFuel fuelType : fuelTypes) {
-                if (fuelType.test(port.getItemInSlot(slot)) && menu.fits(new CustomItem(port.getItemInSlot(slot), 1), getFuelSlots())) {
+                if (fuelType.test(port.getItemInSlot(slot)) && menu.fits(new CustomItemStack(port.getItemInSlot(slot), 1), getFuelSlots())) {
                     port.replaceExistingItem(slot, menu.pushItem(port.getItemInSlot(slot), getFuelSlots()));
                     return;
                 }

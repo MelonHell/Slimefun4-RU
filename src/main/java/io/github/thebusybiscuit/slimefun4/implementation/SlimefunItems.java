@@ -16,6 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
@@ -24,15 +25,12 @@ import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ColoredFireworkStar;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 /**
  * This class holds a static references to every {@link SlimefunItemStack}
  * found in Slimefun.
- * 
- * @author TheBusyBiscuit
- *
  */
+@SuppressWarnings("java:S1192") // Suppress "duplicate string literal" warnings
 public final class SlimefunItems {
 
     private SlimefunItems() {}
@@ -261,7 +259,7 @@ public final class SlimefunItems {
         hazmatLore.add(ChatColor.GOLD + "Эффекты полного комплекта:");
         hazmatLore.add(ChatColor.YELLOW + "- Иммунитет к радиации");
 
-        if (SlimefunPlugin.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_15)) {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_15)) {
             hazmatLore.add(ChatColor.YELLOW + "- Защита от укусов пчёл");
         }
     }
