@@ -55,8 +55,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         addItemHandler(onPlace(), onRightClick(), onBreak());
     }
 
-    @Nonnull
-    private BlockPlaceHandler onPlace() {
+    private @Nonnull BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(false) {
 
             @Override
@@ -72,8 +71,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         };
     }
 
-    @Nonnull
-    private BlockBreakHandler onBreak() {
+    private @Nonnull BlockBreakHandler onBreak() {
         return new SimpleBlockBreakHandler() {
 
             @Override
@@ -83,8 +81,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         };
     }
 
-    @Nonnull
-    public BlockUseHandler onRightClick() {
+    public @Nonnull BlockUseHandler onRightClick() {
         return e -> {
             e.cancel();
 
@@ -97,7 +94,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         };
     }
 
-    private static void openEditor(@Nonnull Player p, @Nonnull Block projector) {
+    private void openEditor(@Nonnull Player p, @Nonnull Block projector) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "machines.HOLOGRAM_PROJECTOR.inventory-title"));
 
         menu.addItem(0, new CustomItemStack(Material.NAME_TAG, "&7Текст &e(Нажми, чтобы изменить)", "", "&r" + ChatColors.color(BlockStorage.getLocationInfo(projector.getLocation(), "text"))));
@@ -106,6 +103,13 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
             Slimefun.getLocalization().sendMessage(pl, "machines.HOLOGRAM_PROJECTOR.enter-text", true);
 
             ChatUtils.awaitInput(pl, message -> {
+                // Fixes #3445 - Make sure the projector is not broken
+                if (!BlockStorage.check(projector, getId())) {
+                    // Hologram projector no longer exists.
+                    // TODO: Add a chat message informing the player that their message was ignored.
+                    return;
+                }
+
                 ArmorStand hologram = getArmorStand(projector, true);
                 hologram.setCustomName(ChatColors.color(message));
                 BlockStorage.addBlockInfo(projector, "text", hologram.getCustomName());
@@ -154,8 +158,7 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
         return hologram;
     }
 
-    @Nonnull
-    private static ArmorStand spawnArmorStand(@Nonnull Location l) {
+    private static @Nonnull ArmorStand spawnArmorStand(@Nonnull Location l) {
         ArmorStand armorStand = (ArmorStand) l.getWorld().spawnEntity(l, EntityType.ARMOR_STAND);
         armorStand.setVisible(false);
         armorStand.setSilent(true);
